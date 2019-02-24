@@ -5,7 +5,7 @@ const connection = mysql.createConnection(process.env.DB);
 connection.config.queryFormat = function queryFormat(query, values) {
   if (!values) return query;
   return query.replace(/:(\w+)/g, (txt, key) => {
-    if (values[key]) {
+    if (values[key] !== undefined) {
       return this.escape(values[key]);
     }
     return txt;

@@ -1,1 +1,4 @@
 PORT=
+NODE_ENV=
+DB=
+JWT_SECRET=

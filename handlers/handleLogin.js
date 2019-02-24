@@ -11,7 +11,7 @@ module.exports = (req, res) => {
   return getCats({ username })
     .then(([results]) => {
       if (results.length === 0) {
-        return res.sendStatus(404);
+        return res.sendStatus(401);
       }
       const user = results[0];
       return bcrypt.compare(password, user.password)
