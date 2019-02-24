@@ -42,12 +42,8 @@ module.exports = ({ password, ...rest }) => {
           console.log(results);
         })
         .then(() => db.commitAsync())
-        .catch((error) => {
-          return db.rollbackAsync()
-            .then(() => {
-              return Promise.reject(error);
-            });
-        });
+        .catch(error => db.rollbackAsync()
+          .then(() => Promise.reject(error)));
     })
     .catch((error) => {
       console.error(error);

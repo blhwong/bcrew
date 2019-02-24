@@ -2,9 +2,9 @@ const bcrypt = require('bcrypt');
 const jwt = Promise.promisifyAll(require('jsonwebtoken'));
 const { getCats, setLastSeen } = require('../db/helpers');
 
-const buildToken = ({ id, name, username }) => {
-  return jwt.signAsync({ id, name, username }, process.env.JWT_SECRET, { expiresIn: '24h' });
-};
+const buildToken = ({ id, name, username }) => (
+  jwt.signAsync({ id, name, username }, process.env.JWT_SECRET, { expiresIn: '24h' })
+);
 
 module.exports = (req, res) => {
   const { username, password } = req.body;

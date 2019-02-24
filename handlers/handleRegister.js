@@ -10,8 +10,6 @@ module.exports = (req, res) => {
     return res.status(400).send('Password is less than 8 characters');
   }
   return addCat(req.body)
-    .then(() => {
-      return res.sendStatus(201);
-    })
+    .then(() => res.sendStatus(201))
     .catch(() => res.sendStatus(500));
 };
