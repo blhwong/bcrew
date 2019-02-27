@@ -6,9 +6,6 @@ module.exports = (replacements) => {
   `;
   return db.beginTransactionAsync()
     .then(() => db.queryAsync(query, replacements))
-    .then((results) => {
-      console.log(results);
-    })
     .then(() => db.commitAsync())
     .catch(error => db.rollbackAsync()
       .then(() => Promise.reject(error)));

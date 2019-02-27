@@ -44,4 +44,4 @@ Passwords are hashed using bcrypt so that plain text isn't stored into the datab
 
 Setting up the deployment took a little longer than expected since Elastic Beanstalk isn't as user friendly as something as Heroku. But of course AWS is a lot more configurable and powerful. There
 
-If I had more time, I would have used a logger library instead of console.log and a testing framework to test endpoints. I would have also wanted some more robust input handling of the dates. Right now if it's not inputted in the proper format, then it will just record 0000-00-00.
+If I had more time, I would have wanted to use a logger library instead of console.log and a testing framework to test endpoints. I would have also wanted some more robust input handling of the dates. Right now if it's not inputted in the proper format, then it will just record 0000-00-00.
