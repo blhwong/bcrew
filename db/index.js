@@ -1,3 +1,4 @@
+global.Promise = require('bluebird');
 const mysql = require('mysql');
 
 const connection = mysql.createConnection(process.env.DB);

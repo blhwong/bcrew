@@ -1,3 +1,4 @@
+global.Promise = require('bluebird');
 const bcrypt = require('bcrypt');
 const jwt = Promise.promisifyAll(require('jsonwebtoken'));
 const { getCats, setLastSeen } = require('../db/helpers');
