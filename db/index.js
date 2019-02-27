@@ -1,26 +1,7 @@
 global.Promise = require('bluebird');
 const mysql = require('mysql');
 
-let connection = mysql.createConnection(process.env.DB);
-
-const handleDisconnect = (client) => {
-  client.on('error', (err) => {
-    if (!err.fatal) {
-      return;
-    }
-    if (err.code !== 'PROTOCOL_CONNECTION_LOST') {
-      throw err;
-    }
-
-    console.error('> Reconnecting lost MySQL connection: ', err.stack);
-
-    connection = mysql.createConnection(process.env.DB);
-    handleDisconnect(connection);
-    connection.connect();
-  });
-};
-
-handleDisconnect(connection);
+const connection = mysql.createConnection(process.env.DB);
 
 connection.config.queryFormat = function queryFormat(query, values) {
   if (!values) return query;
@@ -35,6 +16,9 @@ connection.config.queryFormat = function queryFormat(query, values) {
 const db = Promise.promisifyAll(connection, { multiArgs: true });
 
 db.connectAsync()
+  .then(() => {
+    setInterval(() => db.queryAsync('SELECT 1'), 5000);
+  })
   .then(() => {
     console.log('Connected to DB');
   })
