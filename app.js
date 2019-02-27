@@ -21,4 +21,8 @@ app.post('/cat/login', handleLogin);
 app.get('/cats', jwtMiddleware({ secret: process.env.JWT_SECRET }), handleCats);
 app.get('/cats/random', handleRandom);
 
+app.get('*', (req, res) => {
+  res.send('Hello world!');
+});
+
 module.exports = app;
